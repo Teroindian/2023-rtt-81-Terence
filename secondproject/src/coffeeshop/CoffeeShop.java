@@ -3,6 +3,7 @@ package coffeeshop;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class CoffeeShop {
@@ -10,6 +11,8 @@ public class CoffeeShop {
 	
 	List<Product> products = new ArrayList<>();
 	
+	List<Product> order = new ArrayList<>();
+	Scanner input = new Scanner ( System.in);
 
 
 	public void setupProducts() {
@@ -29,16 +32,25 @@ public class CoffeeShop {
 		cookie.setPrice(6.77);
 		products.add(cookie);
 		
-		printProduct(coffee);
-		printProduct(tea);
-		printProduct(cookie);
+		
+		Product sandwich = new Product();
+		sandwich.setName("Egg && Cheese Muffin");
+		sandwich.setPrice(19.99);
+		products.add(sandwich);
+		
+		//printProduct(coffee);
+		//printProduct(tea);
+	//	printProduct(cookie);
 		
 		
-		printAllProducts();
+	//	printAllProducts();
 	}
+	
+	
+	//print product name + tab + price ASSIGNMENT
 		public void printProduct(Product product) {
-			System.out.println("Product name : " + product.getName() +
-					"Price :" +
+			System.out.println( product.getName() +
+					"\t"+
 		product.getPrice());
 		}
 		
@@ -50,13 +62,7 @@ public class CoffeeShop {
 
 	//	System.out.println("Price : " + coffee.getPrice());
 
-	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		CoffeeShop cf = new CoffeeShop();
-		cf.setupProducts();
-
+	public void example () { 
 		double coffee = 5.43d;
 		double tea = 4.33d;
 		double cookie = 6.76d;
@@ -84,5 +90,63 @@ public class CoffeeShop {
 		System.out.println("Total :\t\t " + df.format(totalSale));
 
 	}
+	
+	public int displayMainUserMenu () {
+		System.out.println( "1 Print Menu Items and prices");
+		System.out.println( "2 Add item to your order");
+		System.out.println( "3 Print Items in your order");
+		System.out.println( "4 Checkout");
+		
+		System.out.println("What do you want to do ?");
+		int select = input.nextInt();
+		input.nextLine();
+		return select;
+	}
+	
+	public void userSelectProduct() { 
+		System.out.println("Enter product name to order ");
+		String orderSelection = input.nextLine();
+		
+		
+		for ( Product product : products) {
+		       if ( product.getName().equalsIgnoreCase(orderSelection)) {
+		    	   order.add(product);
+		    	   System.out.println("Added" + product.getName()  +    "to your order");
+		    	   
+		}
+		
+		}
+		
+	}
+		
+		
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		CoffeeShop cf = new CoffeeShop();
+		cf.setupProducts();
+		cf.printAllProducts();
+
+		int userSelection = cf.displayMainUserMenu();
+		if ( userSelection == 1) { 
+			cf.printAllProducts();
+		} else if  (userSelection == 2) {
+			cf.userSelectProduct();
+		}else if  (userSelection == 3) {
+			//TO DO HOMEWORK DISPLAY PRODUCTS IN THE ORDER LIST HERE
+			System.out.println("Products in your order :");
+			for(Product product : cf.order) {
+				cf.printProduct(product);
+			}
+		}else if  (userSelection == 5) {
+			System.exit(0);
+		} else {
+			System.out.println("User input "+ userSelection + 
+			" is unknown.   Try again");
+		}
+		
+	}
 
 }
+
