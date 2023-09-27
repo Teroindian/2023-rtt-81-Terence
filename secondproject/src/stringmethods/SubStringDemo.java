@@ -91,6 +91,10 @@ public class SubStringDemo {
 				// using only indexOf(" ") print the substring that contains the word "is"
 				// use 2 substrings to do this.
 				
+	        String myString1 = "This is a test string.";
+
+	        // Print the substring that contains the word "is" using only `indexOf(" ")` and `substring()`.
+	        System.out.println(myString1.substring(0, myString1.indexOf(" ", myString1.indexOf("is") + 2)));
 	        
 				
 				// https://edabit.com/challenges
