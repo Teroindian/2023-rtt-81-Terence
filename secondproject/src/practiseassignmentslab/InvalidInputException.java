@@ -1,5 +1,10 @@
-package practiseassignmentslab;
+/*package practiseassignmentslab;
 
-public class InvalidInputException {
 
-}
+	class InvalidInputException extends Exception { 
+		public InvalidInputException(String message) { 
+			super(message);
+		}
+	}
+
+*/
