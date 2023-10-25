@@ -1,7 +1,9 @@
 package org.perscholas.database.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,13 +29,18 @@ public class Order {
 	//insertable and updatable to false
 	//we need to do this cause we now have a @ManyToOne annotation
 	//that is working on customer_id field also
-	@Column(name = "customer_id", insertable = false, updatable = false)
-	private Integer customerId;
+//	@Column(name = "customer_id", insertable = false, updatable = false)
+//	private Integer customerId;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+	
+	 @OneToMany(mappedBy = "order",
+			 fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)
+	    private List<OrderDetail> orderdetails;
 	
 	@Column(name = "order_date")
 	@Temporal(TemporalType.DATE)
@@ -64,14 +72,14 @@ public class Order {
 	}
 
 
-	public Integer getCustomerId() {
-		return customerId;
-	}
+//	public Integer getCustomerId() {
+//		return customerId;
+//	}
 
 
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
+//	public void setCustomerId(Integer customerId) {
+//		this.customerId = customerId;
+//	}
 
 
 	public Date getOrderDate() {
@@ -131,6 +139,16 @@ public class Order {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+
+	public List<OrderDetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+
+	public void setOrderdetails(List<OrderDetail> orderdetails) {
+		this.orderdetails = orderdetails;
 	}
 
 	

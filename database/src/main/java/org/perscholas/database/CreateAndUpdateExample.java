@@ -86,7 +86,7 @@ public class CreateAndUpdateExample {
 		  // If the customer ID exists in the database, create a new order
 		  if (customer != null) {
 		    Order order = new Order();
-		    order.setCustomerId(customerId);
+		    order.setCustomer(customer);
 		    order.setRequiredDate(new Date());
 		    order.setStatus("NEW");
 

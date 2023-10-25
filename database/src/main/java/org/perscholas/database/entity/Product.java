@@ -1,10 +1,15 @@
 package org.perscholas.database.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +21,11 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
+	
+	 @OneToMany(mappedBy = "product",
+			 fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)
+	    private List<OrderDetail> orderdetails;
 	
 	@Column(name = "product_code")
 	private String  productCode;
@@ -124,6 +134,14 @@ public class Product {
 
 	public void setMsrp(Double msrp) {
 		this.msrp = msrp;
+	}
+
+	public List<OrderDetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(List<OrderDetail> orderdetails) {
+		this.orderdetails = orderdetails;
 	}
 	
 	

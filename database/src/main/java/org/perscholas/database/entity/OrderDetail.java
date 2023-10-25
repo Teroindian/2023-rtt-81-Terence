@@ -2,9 +2,12 @@ package org.perscholas.database.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,11 +19,23 @@ public class OrderDetail {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "order_id")
-	private Integer orderId;
+//	@Column(name = "order_id",  insertable = false, updatable = false)
+//	private Integer orderId;
 	
-	@Column(name = "product_id")
-	private Integer productId;
+	         @ManyToOne(fetch = FetchType.EAGER, optional = false)
+              @JoinColumn(name = "order_id", nullable = false)
+              private Order order;
+	         
+	         
+	         @ManyToOne(fetch = FetchType.EAGER, optional = false)
+             @JoinColumn(name = "product_id", nullable = false)
+             private Product product;
+	         
+	         
+	         
+	
+//	@Column(name = "product_id", insertable = false, updatable = false)
+//	private Integer productId;
 	
 	@Column(name = "quantity_ordered")
 	private Integer quantityOrdered;
@@ -39,21 +54,21 @@ public class OrderDetail {
 		this.id = id;
 	}
 
-	public Integer getOrderId() {
-		return orderId;
-	}
+//	public Integer getOrderId() {
+//		return orderId;
+//	}
 
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
-	}
-
-	public Integer getProductId() {
-		return productId;
-	}
-
-	public void setProductId(Integer productId) {
-		this.productId = productId;
-	}
+//	public void setOrderId(Integer orderId) {
+//		this.orderId = orderId;
+//	}
+//
+//	public Integer getProductId() {
+//		return productId;
+//	}
+//
+//	public void setProductId(Integer productId) {
+//		this.productId = productId;
+//	}
 
 	public Integer getQuantityOrdered() {
 		return quantityOrdered;
@@ -77,6 +92,22 @@ public class OrderDetail {
 
 	public void setOrderLineNumber(Integer orderLineNumber) {
 		this.orderLineNumber = orderLineNumber;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	
 	

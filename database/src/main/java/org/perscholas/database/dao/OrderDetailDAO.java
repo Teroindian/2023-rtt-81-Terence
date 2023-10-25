@@ -4,7 +4,9 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.perscholas.database.entity.Customer;
 import org.perscholas.database.entity.OrderDetail;
 import org.perscholas.database.entity.Product;
 
@@ -21,6 +23,16 @@ public class OrderDetailDAO {
 
 		OrderDetail result = query.getSingleResult();
 		return result;
+	}
+	
+	public void save ( OrderDetail save) { 
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		
+		Transaction t = session.beginTransaction();
+		
+		session.saveOrUpdate(save);
+		t.commit();
 	}
 	
 }
