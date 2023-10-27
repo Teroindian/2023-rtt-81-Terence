@@ -109,6 +109,8 @@ public class OrderDetail {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+
 	
 	
 	

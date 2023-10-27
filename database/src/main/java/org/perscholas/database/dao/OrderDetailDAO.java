@@ -14,12 +14,11 @@ import org.perscholas.database.entity.Product;
 
 public class OrderDetailDAO {
 
-	public  OrderDetail findByOrderIdAndProductId(Integer orderId, Integer productId) {
+	public OrderDetail findByOrderIdAndProductId(Integer orderId, Integer productId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "FROM orderdetails od WHERE od.order.id = : orderId "
-				+ "and od.product.id = :od.product_id ";
+		String hql = "FROM orderdetails od WHERE od.order.id = :orderId and od.product.id = :productId ";
 		
 				
 	  TypedQuery<OrderDetail> query = session.createQuery(hql, OrderDetail.class);

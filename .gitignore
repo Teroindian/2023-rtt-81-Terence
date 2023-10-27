@@ -24,3 +24,6 @@ hs_err_pid*
 replay_pid*
 database/target/classes/META-INF/MANIFEST.MF
 database/
+junit-examples/target/classes/META-INF/MANIFEST.MF
+junit-examples/target/classes/META-INF/maven/perscholas/junit-example/pom.properties
+junit-examples/target/classes/META-INF/maven/perscholas/junit-example/pom.xml
