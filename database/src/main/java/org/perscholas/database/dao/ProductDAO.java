@@ -18,10 +18,11 @@ public class ProductDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 
-		//String hql = "FROM Product p WHERE p.productName = : productName"; // Example of HQL to get all records of user class
+		//String hql = "FROM Product p WHERE p.productName  like : name";    // = : productName";
+		 *  // Example of HQL to get all records of user class
 
 		TypedQuery<Product> query = session.createQuery(hql, Product.class);
-		query.setParameter("productName", name);
+		query.setParameter("productName","%" + name + "%");
 
 		//Product result = query.getSingleResult();
 		//return result;

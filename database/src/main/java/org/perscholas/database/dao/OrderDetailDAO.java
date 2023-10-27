@@ -1,5 +1,7 @@
 package org.perscholas.database.dao;
 
+import java.util.List;
+
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
@@ -12,6 +14,31 @@ import org.perscholas.database.entity.Product;
 
 public class OrderDetailDAO {
 
+	public  OrderDetail findByOrderIdAndProductId(Integer orderId, Integer productId) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		
+		String hql = "FROM orderdetails od WHERE od.order.id = : orderId "
+				+ "and od.product.id = :od.product_id ";
+		
+				
+	  TypedQuery<OrderDetail> query = session.createQuery(hql, OrderDetail.class);
+	  
+	  query.setParameter("orderId",orderId);
+	  query.setParameter("productId",productId);
+	  
+	  
+	  OrderDetail result = query.getSingleResult();
+		return result;
+		
+		//List<OrderDetail> result = query.getResultList();
+		//return result;
+	  
+	}
+	
+	
+	
+	
 	public OrderDetail findById(Integer id) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
