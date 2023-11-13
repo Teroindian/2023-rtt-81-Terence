@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transitions</title>
+    <style>
+      .box {
+        text-align: center;
+        height: 100px;
+        width: 100px;
+        background-color: aqua;
+        transition: margin-left 1s;
+      }
+      .box:hover {
+        margin-left: 500px;
+      }
+
+      /* transform using rotation */
+      .box2 {
+        text-align: center;
+        height: 100px;
+        width: 100px;
+        background-color: rgb(43, 255, 0);
+        transition: transform 3s;
+      }
+      .box2:hover {
+        height: 100px;
+        width: 100px;
+        transform: rotate(360deg);
+      }
+      /* transform using scale */
+      .box3 {
+        text-align: center;
+        height: 100px;
+        width: 100px;
+        background-color: rgb(255, 0, 0);
+        transition: transform 3s;
+      }
+      .box3:hover {
+        height: 100px;
+        width: 100px;
+        background-color: rgba(235, 33, 103, 0.452);
+        transform: scale(2);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Transitions(margin-left)</h1>
+      <div class="box">
+        <p>Transition</p>
+        <br />
+        <p>*margin-left*</p>
+      </div>
+      <br />
+
+      <!-- transform -->
+      <h1>Transform(rotate)</h1>
+      <div class="box2">
+        <p>Transform</p>
+        <br />
+        <p>*rotate*</p>
+      </div>
+      <br />
+      <h1>Transform(scale)</h1>
+      <div class="box3">
+        <p>Transform</p>
+        <br />
+        <p>*scale*</p>
+      </div>
+    </div>
+  </body>
+</html>

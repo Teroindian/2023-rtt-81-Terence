@@ -1,0 +1,60 @@
+                                     /* styles.css */
+/*#main_container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }*/
+  
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 20px; /* Add some space between sections */
+  }
+  
+  .box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    box-sizing: border-box;
+  }
+  
+  #box1 {
+    flex: 1; 
+    width: 50%;
+  }
+  
+  #box2 {
+    flex: 1; 
+    width: 50%;
+  }
+  
+  .footer {
+    margin-top: 20px; /* Add some space between the footer and the other boxes */
+  }
+  
+  #section2 {
+    flex: 1; /* Section 2 will occupy the remaining space */
+    border: 1px solid #ccc;
+    /*padding:20px;*/
+    /*margin: 10px;*/
+    box-sizing: border-box;
+    width: 95%;
+  }
+  
+  #section3 {
+    flex: 1; /* Section 3 will occupy the remaining space */
+    border: 1px solid #ccc;
+    /*padding:20px;*/
+    /*margin: 10px;*/
+    box-sizing: border-box;
+    width: 5%;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+  
+  p {
+    font-size: 16px;
+  }

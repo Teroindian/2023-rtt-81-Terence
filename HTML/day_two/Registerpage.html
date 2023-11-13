@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+      /*  .container {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }*/
+
+        h1 {
+            font-size: 24px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 7px;
+            margin-bottom: 10px;
+        }
+
+       
+
+        input[type="radio"] {
+            margin-right: -45px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register Page</h1>
+        <form action="#" method="post">
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" required>
+            <br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" required>
+            <br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+            <br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            <br>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" required>
+            <br>
+
+            <label for="gender">Gender:</label>
+            <input type="radio" name="gender" id="male" value="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" value="female">
+            <label for="female">Female</label>
+            <br>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" name="dob" id="dob" required>
+            <br>
+
+            <label for="habits">Habits:</label>
+            <input type="radio" name="habits" id="sports" value="sports">
+            <label for="sports">Sports</label>
+            <input type="radio" name="habits" id="eating" value="eating">
+            <label for="eating">Eating</label>
+            <input type="radio" name="habits" id="sleep" value="sleep">
+            <label for="sleep">Sleep</label>
+            <br><br>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
