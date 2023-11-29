@@ -10,9 +10,10 @@
         <form action="/customer/search">
 
 
-              First Name: <input type="text" name="search" placeholder="Search by first name" value="${search}"/>
+              First Name: <input type="text" name="firstName" placeholder="Search by first name" value="${search}"/>
               <br>
-              Last Name: <input type="text" name="search" placeholder="Search by last name" value="${search}"/>
+              Last Name: <input type="text" name="lastName" placeholder="Search by last name" value="${search}"/>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
 
          </form>

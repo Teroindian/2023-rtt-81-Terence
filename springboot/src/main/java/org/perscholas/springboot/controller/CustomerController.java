@@ -25,7 +25,7 @@ public class CustomerController {
     @Autowired
     private CustomerDAO customerDAO;
 
-    @GetMapping("/customer/search")
+   /* @GetMapping("/customer/search")
     public ModelAndView search(@RequestParam (required = false) String search){
         ModelAndView response = new ModelAndView("customer/search");
 
@@ -44,7 +44,31 @@ public class CustomerController {
 
 
         return response;
+    }*/
+
+    @GetMapping("/customer/search")
+    public ModelAndView search(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName
+    ) {
+        ModelAndView response = new ModelAndView("customer/search");
+
+        // Log the values received from the form
+        log.debug("In the customer search controller method: firstName = " + firstName + ", lastName = " + lastName);
+
+        if (firstName != null || lastName != null) {
+            // Use both first name and last name parameters in the search
+            List<Customer> customers = customerDAO.findByFirstNameOrLastName(firstName, lastName);
+            response.addObject("customerVar", customers);
+            response.addObject("search", firstName); // Assuming you want to use the first name for display
+            for (Customer customer : customers) {
+                log.debug("Customer: id = " + customer.getId() + ", last name = " + customer.getLastname());
+            }
+        }
+
+        return response;
     }
+
 
     @GetMapping("/customer/create")
     public ModelAndView createCustomer(
