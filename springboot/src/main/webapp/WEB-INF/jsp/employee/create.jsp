@@ -9,19 +9,20 @@
     <div class="container">
 
         <form method="get" action="/employee/createSubmit">
+         <input type="hidden" name="id" value="${form.id}">
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName"  aria-describedby="firstNameHelp">
+                <input type="text" class="form-control" id="firstName" name="firstName"  aria-describedby="firstNameHelp" value="${form.firstName}">
                 <div id="firstNameHelp" class="form-text">Please let us know your first name</div>
             </div>
 
             <div class="mb-3">
                            <label for="lastName" class="form-label">Last Name</label>
-                           <input type="text" class="form-control" id="lastName" name="lastName">
+                           <input type="text" class="form-control" id="lastName" name="lastName" value="${form.lastName}">
             </div>
             <div class="mb-3">
                            <label for="department" class="form-label">Department</label>
-                           <input type="text" class="form-control" id="department" name="department">
+                           <input type="text" class="form-control" id="department" name="department" value="${form.department}">
             </div>
 
 

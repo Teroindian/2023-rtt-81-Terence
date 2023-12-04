@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class CreateEmployeeFormBean {
 
+    private Integer Id;
     private String firstName;
     private String lastName;
     private String department;
