@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
 import org.perscholas.springboot.formbean.CreateCustomerFormBean;
+import org.perscholas.springboot.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerDAO customerDAO;
+
+    @Autowired
+    private CustomerService customerService;
 
    /* @GetMapping("/customer/search")
     public ModelAndView search(@RequestParam (required = false) String search){
@@ -56,6 +60,7 @@ public class CustomerController {
 
         CreateCustomerFormBean form = new CreateCustomerFormBean();
         if ( customer != null ) {
+            form.setId(customer.getId());
             form.setFirstName(customer.getFirstname());
             form.setLastName(customer.getLastname());
             form.setPhone(customer.getPhone());
@@ -106,21 +111,10 @@ public class CustomerController {
     ){
         ModelAndView response = new ModelAndView("customer/create");
 
-        log.info("firstname:" + form.getFirstName());
-        log.info("lastname:" + form.getLastName());
-        log.info("phone:" + form.getPhone());
-        log.info("city:" + form.getCity());
-
-        Customer customer =new Customer();
-        customer.setFirstname(form.getFirstName());
-        customer.setLastname(form.getLastName());
-        customer.setPhone(form.getPhone());
-        customer.setCity(form.getCity());
-
-        customerDAO.save(customer);
-
+        customerService.createCustomer(form);
 
         log.info(" In create customer with  Args");
+
         return response;
     }
 
