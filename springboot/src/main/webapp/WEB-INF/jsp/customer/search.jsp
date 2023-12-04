@@ -4,22 +4,56 @@
 <jsp:include page="../include/header.jsp"/>
 
 <section>
-     <div class="container pt-5">
-        <h1 class="pb-3"> Customer Search </h1>
+    <div class="bg-light2 pt-5 pb-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="m-0">Customer Search</h1>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <form action="/customer/search">
+<section class="bg-light1 pt-5 pb-5">
+     <div class="container">
+         <form action="/customer/search">
+                    <div class="row justify-content-center">
+                        <div class="col-3 col-sm-3 col-md-2 col-lg-2 text-end">
+                            <label for="firstName" class="form-label m-0 pt-1">First Name</label>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-6 col-lg-4">
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Search by first name" value="${firstName}"/>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center pt-3">
+                        <div class="col-3 col-sm-3 col-md-2 col-lg-2 text-end">
+                            <label for="lastName" class="form-label m-0 pt-1">Last Name</label>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-6 col-lg-4">
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Search by last name" value="${lastName}"/>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center pt-4">
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
 
 
-              First Name: <input type="text" name="firstName" placeholder="Search by first name" value="${search}"/>
-              <br>
-              Last Name: <input type="text" name="lastName" placeholder="Search by last name" value="${search}"/>
+</div>
+</section>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
 
-         </form>
+    <c:if test="${not empty customerVar}">
+        <section class="bg-light1 pb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
 
-         <c:if test="${not empty customerVar}">
-                     <h1>Customers Found ${customerVar.size()}</h1>
+                        <h3 class="text-center pb-3">Customers Found ${customerVar.size()}</h3>
+
 
                      <table class="table table-hover">
                          <tr>
@@ -40,9 +74,11 @@
                          </c:forEach>
                      </table>
 
-                 </c:if>
+           </div>
+                       </div>
+                   </div>
+               </section>
+           </c:if>
 
-      </div>
-</section>
 
 <jsp:include page="../include/footer.jsp"/>
