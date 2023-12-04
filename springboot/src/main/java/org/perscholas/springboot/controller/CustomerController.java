@@ -8,6 +8,7 @@ import org.perscholas.springboot.formbean.CreateCustomerFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,6 +46,27 @@ public class CustomerController {
 
         return response;
     }*/
+
+    @GetMapping("/customer/edit/{customerId}")
+    public ModelAndView editCustomer(@PathVariable int customerId){
+
+        ModelAndView response = new ModelAndView("customer/create");
+
+        Customer customer  = customerDAO.findById(customerId);
+
+        CreateCustomerFormBean form = new CreateCustomerFormBean();
+        if ( customer != null ) {
+            form.setFirstName(customer.getFirstname());
+            form.setLastName(customer.getLastname());
+            form.setPhone(customer.getPhone());
+            form.setCity(customer.getCity());
+        } else {
+            log.warn(" customer with id " + customerId + " was not found");
+        }
+        response.addObject("form", form);
+
+        return response;
+    }
 
     @GetMapping("/customer/search")
     public ModelAndView search(
