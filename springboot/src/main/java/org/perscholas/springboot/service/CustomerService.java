@@ -17,7 +17,7 @@ public class CustomerService {
     private CustomerDAO customerDAO;
 
 
-    public void createCustomer(CreateCustomerFormBean form) {
+    public Customer createCustomer(CreateCustomerFormBean form) {
         log.debug("id" + form.getId());
         log.info("firstname:" + form.getFirstName());
         log.info("lastname:" + form.getLastName());
@@ -37,6 +37,6 @@ public class CustomerService {
         customer.setPhone(form.getPhone());
         customer.setCity(form.getCity());
 
-        customerDAO.save(customer);
+       return customerDAO.save(customer);
     }
 }

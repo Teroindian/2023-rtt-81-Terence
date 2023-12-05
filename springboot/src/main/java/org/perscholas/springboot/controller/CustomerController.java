@@ -1,6 +1,7 @@
 package org.perscholas.springboot.controller;
 
 
+import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
@@ -52,11 +53,17 @@ public class CustomerController {
     }*/
 
     @GetMapping("/customer/edit/{customerId}")
-    public ModelAndView editCustomer(@PathVariable int customerId){
+  //  public ModelAndView editCustomer(@PathVariable int customerId){
+    public ModelAndView editCustomer(@PathVariable int customerId, @RequestParam(required = false) String success) {
+        log.info("######################### In /customer/edit #########################");
 
         ModelAndView response = new ModelAndView("customer/create");
 
         Customer customer  = customerDAO.findById(customerId);
+
+        if (!StringUtils.isEmpty(success)) {
+            response.addObject("success", success);
+        }
 
         CreateCustomerFormBean form = new CreateCustomerFormBean();
         if ( customer != null ) {
@@ -107,13 +114,16 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/createSubmit")
-    public ModelAndView createCustomer( CreateCustomerFormBean form
+    public ModelAndView createCustomerSubmit( CreateCustomerFormBean form
     ){
-        ModelAndView response = new ModelAndView("customer/create");
 
-        customerService.createCustomer(form);
+        log.info("######################### In create customer submit #########################");
 
-        log.info(" In create customer with  Args");
+        Customer c = customerService.createCustomer(form);
+
+        ModelAndView response = new ModelAndView();
+        response.setViewName("redirect:/customer/edit/" + c.getId() + "?success=Customer Saved Successfully");
+        
 
         return response;
     }
