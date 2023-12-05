@@ -1,14 +1,18 @@
 package org.perscholas.springboot.controller;
 
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.EmployeeDAO;
+import org.perscholas.springboot.database.entity.Customer;
 import org.perscholas.springboot.database.entity.Employee;
 import org.perscholas.springboot.formbean.CreateEmployeeFormBean;
 import org.perscholas.springboot.service.CustomerService;
 import org.perscholas.springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,17 +96,37 @@ public class EmployeeController {
 
 
     @GetMapping("/employee/createSubmit")
-    public ModelAndView createEmployee( CreateEmployeeFormBean form
-    ){
+    public ModelAndView createEmployeeSubmit(@Valid CreateEmployeeFormBean form, BindingResult bindingResult){
         ModelAndView response = new ModelAndView("employee/create");
+
+
+       /* if (bindingResult.hasErrors()) {
+            log.info("######################### In create employee submit - has errors #########################");
+            ModelAndView response = new ModelAndView("employee/create");
+
+            for ( ObjectError error : bindingResult.getAllErrors() ) {
+                log.info("error: " + error.getDefaultMessage());
+            }
+
+            response.addObject("form", form);
+            response.addObject("errors", bindingResult);
+            return response;
+        }*/
+
 
         employeeService.createEmployee(form);
 
         log.info(" In create employee with  Args");
+
+
+      /*  log.info("######################### In create employee submit #########################");
+
+        Employee e = employeeService.createEmployee(form);
+
+        ModelAndView response = new ModelAndView();
+        response.setViewName("redirect:/employee/edit/" + e.getId() + "?success=Employee Saved Successfully");*/
         return response;
     }
-
-
 
 
 }
