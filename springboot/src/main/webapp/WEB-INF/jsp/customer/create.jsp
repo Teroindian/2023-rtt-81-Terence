@@ -30,23 +30,55 @@
         <!-- the action attribute on the form tag is the URL that the form will submit to when then user clicks the submit button -->
         <form method="get" action="/customer/createSubmit">
         <input type="hidden" name="id" value="${form.id}">
-            <div class="mb-3">
+            <div class="mt-3">
                 <label for="firstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstNameHelp" value="${form.firstName}">
                 <div id="firstNameHelp" class="form-text">Please let us know your first name</div>
             </div>
-            <div class="mb-3">
+            <c:if test="${errors.hasFieldErrors('firstName')}">
+                            <div style="color:red">
+                                <c:forEach items="${errors.getFieldErrors('firstName')}" var="error">
+                                    ${error.defaultMessage}<br>
+                                </c:forEach>
+                            </div>
+                        </c:if>
+
+            <div class="mt-3">
                 <label for="lastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="lastName" name="lastName" value="${form.lastName}">
             </div>
-            <div class="mb-3">
+            <c:if test="${errors.hasFieldErrors('LastName')}">
+                            <div style="color:red">
+                                <c:forEach items="${errors.getFieldErrors('lastName')}" var="error">
+                                    ${error.defaultMessage}<br>
+                                </c:forEach>
+                            </div>
+                        </c:if>
+
+            <div class="mt-3">
                 <label for="phone" class="form-label">Phone</label>
                 <input type="text" class="form-control" id="phone" name="phone" value="${form.phone}">
             </div>
-            <div class="mb-3">
+            <c:if test="${errors.hasFieldErrors('Phone')}">
+                            <div style="color:red">
+                                <c:forEach items="${errors.getFieldErrors('Phone')}" var="error">
+                                    ${error.defaultMessage}<br>
+                                </c:forEach>
+                            </div>
+                        </c:if>
+
+            <div class="mt-3">
                 <label for="city" class="form-label">City</label>
                 <input type="text" class="form-control" id="city" name="city" value="${form.city}">
             </div>
+            <c:if test="${errors.hasFieldErrors('City')}">
+                            <div style="color:red">
+                                <c:forEach items="${errors.getFieldErrors('City')}" var="error">
+                                    ${error.defaultMessage}<br>
+                                </c:forEach>
+                            </div>
+                        </c:if>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
