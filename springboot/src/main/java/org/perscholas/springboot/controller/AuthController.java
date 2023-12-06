@@ -32,6 +32,15 @@ class AuthController {
     }
 
 
+    @GetMapping("/auth/login")
+    public ModelAndView login() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("auth/login");
+        return response;
+    }
+
+
+
     @GetMapping("/auth/registerSubmit")
     public ModelAndView registerSubmit(@Valid RegisterUserFormBean form, BindingResult bindingResult)
     {
