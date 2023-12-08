@@ -36,16 +36,36 @@
                 <li class="nav-item">
                            <a class="nav-link" href="/employee/search">Search Employee</a>
                 </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/auth/register">Create User</a>
-                </li>
 
-                <sec:authorize access="hasAnyAuthority('ADMIN')">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">Admin</a>
-                                    </li>
+                <sec:authorize access="!isAuthenticated()">
+                           <li class="nav-item">
+                                 <a class="nav-link" href="/auth/register">Register User</a>
+                            </li>
+                </sec:authorize>
+
+                          <sec:authorize access="hasAnyAuthority('ADMIN')">
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="">Admin</a>
+                                         </li>
                                 </sec:authorize>
+
+                  <sec:authorize access="isAuthenticated()">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/auth/logout">Logout</a>
+                                </li>
+                   </sec:authorize>
+
+
+                   <sec:authorize access="isAuthenticated()">
+                   <li class="nav-item">
+                                           <a class="nav-link" href=""><sec:authentication property="principal.username" /></a>
+                                       </li>
+                    </sec:authorize>
+
+
             </ul>
         </div>
     </div>
 </nav>
+
+<!--   -->
