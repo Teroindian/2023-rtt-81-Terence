@@ -75,6 +75,7 @@ public class CustomerController {
             form.setLastName(customer.getLastname());
             form.setPhone(customer.getPhone());
             form.setCity(customer.getCity());
+            form.setImageUrl(customer.getImageUrl());
         } else {
             log.warn(" customer with id " + customerId + " was not found");
         }

@@ -71,6 +71,7 @@
                                  <td>${customer.lastname}</td>
                                  <td>${customer.phone}</td>
                                  <td>${customer.city}</td>
+                                 <td><img src="${customer.imageUrl}" style="max-width:100px"></td>
                                  <td><a href="/customer/edit/${customer.id}"</a>Edit</td>
                              </tr>
                          </c:forEach>
