@@ -6,9 +6,12 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
+import org.perscholas.springboot.database.entity.User;
 import org.perscholas.springboot.formbean.CreateCustomerFormBean;
+import org.perscholas.springboot.security.AuthenticatedUserService;
 import org.perscholas.springboot.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -33,6 +36,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
 
    /* @GetMapping("/customer/search")
     public ModelAndView search(@RequestParam (required = false) String search){
@@ -144,6 +150,37 @@ public class CustomerController {
 
 
         return response;
+    }
+
+
+
+
+    @GetMapping("/customers/myCustomers")
+    public void myCustomers() {
+
+
+        log.info("##################### IN MY Customers  #############");
+
+
+
+        // 1) Use the authenticated user service to find the logged in user
+        User user = authenticatedUserService.loadCurrentUser();
+
+
+        // 2) Create a DAO method that will find by userId
+             //written on customer DAO
+        // 3) use the authenticated user id to find a list of all customers created by this user
+        List<Customer> customers = customerDAO.findByUserId(user.getId());
+
+        // 4) loop over the customers created and log.debug the customer id and customer last name
+
+        for (Customer customer : customers) {
+            log.debug("Customer ID: " + customer.getId() + ", Last Name: " + customer.getLastname());
+        }
+
+//The overall purpose of this method is to fetch all customers associated with the currently authenticated user and log their IDs and last names.
+// This could be useful in a system where users have associated customers and you want to view or debug information about these customers.
+
     }
 
 }
