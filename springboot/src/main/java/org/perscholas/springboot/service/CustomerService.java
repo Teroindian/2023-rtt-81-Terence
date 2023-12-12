@@ -52,4 +52,15 @@ public class CustomerService {
 
        return customerDAO.save(customer);
     }
+
+
+
+   public Customer getCustomerById(int customerId) {
+        return customerDAO.findById(customerId);
+    }
+
+
+    public Customer findById(int customerId) {
+        return customerDAO.findById(customerId);
+    }
 }

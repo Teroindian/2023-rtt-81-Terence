@@ -183,4 +183,69 @@ public class CustomerController {
 
     }
 
+
+
+
+    @GetMapping("/customer/detail/{customerId}")
+    public ModelAndView showCustomerDetail(@PathVariable int customerId) {
+        log.info("######################### In /customer/detail #########################");
+
+        ModelAndView response = new ModelAndView("customer/customer-detail");
+
+        Customer customer = customerDAO.findById(customerId);
+
+        if (customer != null) {
+            response.addObject("customerVar", List.of(customer)); // Wrap single customer in a list for consistency
+            // Add additional attributes if needed
+        } else {
+            log.warn("Customer with id " + customerId + " was not found");
+            // You might want to redirect to an error page here
+        }
+
+        return response;
+    }
+
+
+
+   /* @GetMapping("/customer/edit/{customerId}")
+    public ModelAndView editCustomer(@PathVariable int customerId) {
+        ModelAndView response = new ModelAndView("customer/edit");
+
+        Customer customer = customerService.findById(customerId);
+
+        if (customer != null) {
+            response.addObject("customer", customer);
+        } else {
+            log.warn("Customer with id " + customerId + " was not found");
+            // You might want to redirect to an error page here
+        }
+
+        return response;
+    }*/
+
+
+
+ /*   @GetMapping("/customer/edit-form/{customerId}")
+    public ModelAndView editCustomer(@PathVariable int customerId) {
+        ModelAndView response = new ModelAndView("customer/create");
+
+        Customer customer = customerService.findById(customerId);
+
+        if (customer != null) {
+            response.addObject("customer", customer);
+        } else {
+            log.warn("Customer with id " + customerId + " was not found");
+            // You might want to redirect to an error page here
+        }
+
+        return response;
+    }*/
+
+
+
+
+
+
+
+
 }
