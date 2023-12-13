@@ -37,7 +37,7 @@ public class CustomerService {
         if ( customer == null) {
              customer = new Customer();
 
-//line of code loads current user logged in user record from database
+//line of code loads current user logged-in user record from database
             User user = authenticatedUserService.loadCurrentUser();
 
 //then we set our user id onto customer record we are about to create
