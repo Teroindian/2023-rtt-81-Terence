@@ -248,8 +248,14 @@ public class CustomerController {
     }*/
 
     @GetMapping("/customer/fileupload")
-    public ModelAndView fileUpload() {
+    public ModelAndView fileUpload(@RequestParam Integer id) {
         ModelAndView response = new ModelAndView("customer/fileupload");
+
+
+        Customer customer = customerDAO.findById(id);
+        response.addObject("customer",customer);
+
+
 
         log.info(" In fileupload with no Args");
         return response;
@@ -258,8 +264,10 @@ public class CustomerController {
 
 
     @PostMapping("/customer/fileUploadSubmit")
-    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file) {
-        ModelAndView response = new ModelAndView("customer/fileupload");
+    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file,@RequestParam Integer id){
+   // public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file, @RequestParam Integer customerId) {
+      // ModelAndView response = new ModelAndView("customer/fileupload");
+         ModelAndView response = new ModelAndView("redirect:/customer/detail?id=" + id);
 
         log.info("Filename = " + file.getOriginalFilename());
         log.info("Size     = " + file.getSize());
@@ -276,7 +284,42 @@ public class CustomerController {
             e.printStackTrace();
         }
 
+
+        // these 3 lines will load customer id passed in
+        // update the image url field and then save the customer to the database
+        Customer customer = customerDAO.findById(id);
+        customer.setImageUrl("/pub/images/" +  file.getOriginalFilename());
+        customerDAO.save(customer);
+
         return response;
+
+   /* @PostMapping("/customer/fileUploadSubmit")
+    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file,
+                                         @RequestParam Integer id) {
+        ModelAndView response = new ModelAndView("redirect:/customer/detail?id=" + id);
+
+        log.info("Filename = " + file.getOriginalFilename());
+        log.info("Size     = " + file.getSize());
+        log.info("Type     = " + file.getContentType());
+
+
+        // Get the file and save it somewhere
+        File f = new File("./src/main/webapp/pub/images/" + file.getOriginalFilename());
+        try (OutputStream outputStream = new FileOutputStream(f.getAbsolutePath())) {
+            IOUtils.copy(file.getInputStream(), outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // these 3 lines of code will load the customer by the id passed in
+        // update the image url field and then save the customer to the database
+        Customer customer = customerDAO.findById(id);
+        customer.setImageUrl("/pub/images/" + file.getOriginalFilename());
+        customerDAO.save(customer);
+
+        return response;
+    }*/
+
     }
 
 

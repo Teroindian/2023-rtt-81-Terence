@@ -14,9 +14,30 @@
 
 <section class="pt-5 pb-5">
     <div class="container">
+        <div class="row justify-content-center">
+              <div class="col-3">First Name</div>
+               <div class="col-4">${customer.firstname}</div>
+          </div>
+
+           <div class="row justify-content-center">
+                        <div class="col-3">Last Name</div>
+                         <div class="col-4">${customer.lastname}</div>
+           </div>
+
         <form method="POST" action="/customer/fileUploadSubmit" enctype="multipart/form-data">
-            <input type="file" name="file" /><br/><br/>
-            <input type="submit" value="Submit" />
+        <input type="hidden" name="id" value="${customer.id}"/>
+         <div class="row justify-content-center pt-5">
+              <div class="col-7">
+                 <input type="file" name="file" />
+               </div>
+             </div>
+
+
+              <div class="row justify-content-center pt-3">
+                           <div class="col-7">
+                               <input type="submit" value="Submit" />
+                            </div>
+             </div>
         </form>
     </div>
 </section>
