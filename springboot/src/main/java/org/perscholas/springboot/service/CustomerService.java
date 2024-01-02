@@ -41,7 +41,9 @@ public class CustomerService {
             User user = authenticatedUserService.loadCurrentUser();
 
 //then we set our user id onto customer record we are about to create
-            customer.setUserId(user.getId());
+           // customer.setUserId(user.getId());
+
+            customer.setUser(user);
         }
 
         customer.setFirstname(form.getFirstName());

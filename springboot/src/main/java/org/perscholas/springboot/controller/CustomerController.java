@@ -248,11 +248,11 @@ public class CustomerController {
     }*/
 
     @GetMapping("/customer/fileupload")
-    public ModelAndView fileUpload(@RequestParam Integer id) {
+    public ModelAndView fileUpload(@RequestParam Integer customerId) {
         ModelAndView response = new ModelAndView("customer/fileupload");
 
 
-        Customer customer = customerDAO.findById(id);
+        Customer customer = customerDAO.findById(customerId);
         response.addObject("customer",customer);
 
 
